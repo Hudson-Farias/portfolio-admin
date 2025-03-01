@@ -1,0 +1,24 @@
+name: CI/CD - Portfolio Admin
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout do código
+        uses: actions/checkout@v4
+
+      - name: Configure SSH
+        uses: webfactory/ssh-agent@v0.5.3
+        with:
+          ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
+
+      - name: Connect and pull
+        run: |          
+          ssh -o StrictHostKeyChecking=no ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} \
+          'cd codes/portfolio-Admin/portfolio-front && git pull && cd .. && nohup docker-compose up -d --build > deploy.log 2>&1 & disown'
