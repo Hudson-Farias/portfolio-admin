@@ -11,7 +11,10 @@ FROM node:20.15.1-slim
 
 WORKDIR /app
 
-COPY --from=builder  . .
+COPY . .
+COPY --from=builder /app/.next .next
+COPY --from=builder /app/node_modules node_modules
+COPY --from=builder /app/package*.json ./
 
 ENV NODE_ENV=production
 
