@@ -3,7 +3,7 @@ version: '3.8'
 services:
   admin:
     build:
-      context: ./portfolio-admin
+      context: .
       dockerfile: Dockerfile
     ports:
       - "3001:3001"
