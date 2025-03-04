@@ -9,7 +9,8 @@ class ApiClient {
     const response = await fetch(`${this.baseURL}${endpoint}`, {
       method, body: body ? JSON.stringify(body) : undefined
     })
-
+    
+    console.log(response)
     return response
   }
 

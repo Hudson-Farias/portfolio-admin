@@ -11,12 +11,11 @@ interface Project {
 
 
 export default async function Home() {
-  // const response = await API.get('/projects')
-  // const projects: Project[] = await response.json()
+  const response = await API.get('/projects')
+  console.log(response.status)
+  const projects: Project[] = response.status !== 204 ? await response.json() : []
 
-  // console.log(projects)
-
-  const projects: Project[] = []
+  console.log(projects)
 
   return (
     <ul className="list rounded-md shadow-md h-min w-3/5 bg-base-200">
