@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 
+import { API } from "@/api";
+
 const geistSans = Geist({
   variable: "--font-geist-sans",
   subsets: ["latin"],
@@ -17,11 +19,9 @@ export const metadata: Metadata = {
   description: "Admin",
 };
 
-export default function RootLayout({
-  children,
-}: Readonly<{
-  children: React.ReactNode;
-}>) {
+export default async function RootLayout({ children, }: Readonly<{ children: React.ReactNode; }>) {
+  const hasAuth = await API.hasToken()
+
   return (
     <html lang="en" data-theme="black">
       <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
@@ -30,26 +30,15 @@ export default function RootLayout({
 
           <div className="navbar shadow-sm">
             <div className="flex-1">
-              <a href='/' className="btn btn-ghost text-xl">HudsonDev</a>
+              <a href='/' className="btn btn-ghost text-xl text-info-content">HudsonDev</a>
             </div>
-            
-            {/* <div className="flex-none">
-              <ul className="menu menu-horizontal px-1">
-                <li><a>Link</a></li>
-                <li>
-                  <details>
-                    <summary>Parent</summary>
-                    <ul className="bg-base-100 rounded-t-none p-2">
-                      <li><a>Link 1</a></li>
-                      <li><a>Link 2</a></li>
-                    </ul>
-                  </details>
-                </li>
-              </ul>
-            </div> */}
+
+            {!hasAuth &&
+              <div className="flex items-center">
+                <a href={`${process.env.NEXT_PUBLIC_AUTH_URL}/discord/redirect`} target="_blank" className="btn btn-ghost text-xl">Login</a>
+              </div>
+            }
           </div>
-
-
 
           <div className="flex justify-center">
             {children}

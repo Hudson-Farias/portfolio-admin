@@ -15,18 +15,18 @@ export default async function Home() {
   const projects: Project[] = response.status !== 204 ? await response.json() : []
 
   return (
-    <ul className="list rounded-md shadow-md h-min w-3/5 bg-base-200">
+    <ul className="list rounded-md shadow-md h-min w-3/5 bg-base-300">
       {projects.map((project, i) => (
 
         <li className="list-row" key={`project-${i}`}>
 
-          <a href={project.html_url} className="link-hover hover:cursor-pointer">
+          <a href={project.html_url} target="_blank" className="link-hover hover:cursor-pointer">
             <span className="text-xs uppercase font-semibold opacity-60">{project.name.replaceAll('-', ' ')}</span>
           </a>
 
           <span></span>
 
-          <a href={project.homepage} className={project.homepage ? "link-hover hover:cursor-pointer" : "text-base-200"}>
+          <a href={project.homepage} target="_blank" className={project.homepage ? "link-hover hover:cursor-pointer" : "text-base-200"}>
             <FiArrowUpRight className="w-6 h-6" />
           </a>
           <input type="checkbox" defaultChecked className="checkbox" />

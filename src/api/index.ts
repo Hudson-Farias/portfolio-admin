@@ -1,3 +1,5 @@
+import { cookies } from 'next/headers'
+
 class ApiClient {
   private baseURL: string | undefined
 
@@ -6,16 +8,33 @@ class ApiClient {
   }
 
   private async request(method: string, endpoint: string, body?: any): Promise<any> {
+    const cookieStore = await cookies()
+    const token = cookieStore.get('HOST_OWNER_TOKEN')?.value
+
+    const headers: { [key: string]: string } = {
+      'Content-Type': 'application/json',
+      ...(token && { 'Authorization': `Bearer ${token}` }),
+    }
+
     const response = await fetch(`${this.baseURL}${endpoint}`, {
-      method, body: body ? JSON.stringify(body) : undefined
+      // next: { revalidate: revalidate },
+      method, headers, body: body ? JSON.stringify(body) : undefined
     })
-    
-    console.log(response)
+
     return response
   }
 
+
   public get(endpoint: string): Promise<Response> {
     return this.request('GET', endpoint)
+  }
+
+
+  public async hasToken(): Promise<boolean> {
+    const cookieStore = await cookies()
+    const token = cookieStore.get('HOST_OWNER_TOKEN')?.value
+
+    return !!token
   }
 }
 
