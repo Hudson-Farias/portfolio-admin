@@ -1,4 +1,5 @@
 import { FiArrowUpRight } from "react-icons/fi";
+import { FaLock } from "react-icons/fa";
 
 import { API } from "@/api";
 
@@ -7,6 +8,7 @@ interface Project {
   name: string
   html_url: string
   homepage?: string
+  private: boolean
 }
 
 
@@ -19,12 +21,12 @@ export default async function Home() {
       {projects.map((project, i) => (
 
         <li className="list-row" key={`project-${i}`}>
+          {project.private ? <FaLock className="w-6 h-6" /> : <span className="w-6 h-6"></span>}
 
           <a href={project.html_url} target="_blank" className="link-hover hover:cursor-pointer">
             <span className="text-xs uppercase font-semibold opacity-60">{project.name.replaceAll('-', ' ')}</span>
           </a>
 
-          <span></span>
 
           {!!project.homepage && <a href={project.homepage} target="_blank" className="link-hover hover:cursor-pointer">
             <FiArrowUpRight className="w-6 h-6" />
