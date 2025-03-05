@@ -26,9 +26,9 @@ export default async function Home() {
 
           <span></span>
 
-          <a href={project.homepage} target="_blank" className={project.homepage ? "link-hover hover:cursor-pointer" : "text-base-200"}>
+          {!!project.homepage && <a href={project.homepage} target="_blank" className="link-hover hover:cursor-pointer">
             <FiArrowUpRight className="w-6 h-6" />
-          </a>
+          </a>}
           <input type="checkbox" defaultChecked className="checkbox" />
 
         </li>
