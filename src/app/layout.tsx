@@ -26,7 +26,7 @@ export default async function RootLayout({ children, }: Readonly<{ children: Rea
     <html lang="en" data-theme="black">
       <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
 
-        <div className="bg-base-100 h-screen">
+        <div className="bg-base-100 h-screen grid grid-rows-[1fr_14fr] overflow-hidden">
 
           <div className="navbar shadow-sm">
             <div className="flex-1">
@@ -40,7 +40,7 @@ export default async function RootLayout({ children, }: Readonly<{ children: Rea
             }
           </div>
 
-          <div className="flex justify-center">
+          <div className="flex justify-center overflow-auto">
             {children}
           </div>
 
