@@ -45,7 +45,7 @@ class ApiClient {
   }
 
 
-  public async hasToken(): Promise<boolean> {
+  public hasToken(): boolean {
     const cookies = nookies.get(null)
     const token = cookies.HOST_OWNER_TOKEN
 
