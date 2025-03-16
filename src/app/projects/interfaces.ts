@@ -6,3 +6,9 @@ export interface ProjectI {
   private: boolean
   is_active: boolean
 }
+
+
+export interface ProjectsI {
+  visible: ProjectI[]
+  options: ProjectI[]
+}

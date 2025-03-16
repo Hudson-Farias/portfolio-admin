@@ -25,7 +25,7 @@ const schema = z.object({
 })
 
 export default function ExperiencesClient({ experiences }: { experiences: ExperiencesI[] }) {
-  const { register, handleSubmit, setValue, reset, getValues, formState: { errors } } = useForm({ resolver: zodResolver(schema) })
+  const { register, handleSubmit, setValue, formState: { errors } } = useForm({ resolver: zodResolver(schema) })
 
   const [experiencesData, setExperiences] = useState(experiences)
 
@@ -44,10 +44,7 @@ export default function ExperiencesClient({ experiences }: { experiences: Experi
   const onFormSubmit = async (formData: any) => {
     const { id, ...payload } = formData
 
-    console.log('id', id)
-    console.log('payload', payload)
-
-    const response = !!id ? await API.put(`/experiences/${id}`, formData) : await API.post('/experiences', formData)
+    const response = !!id ? await API.put(`/experiences/${id}`, formData) : await API.post('/experiences', payload)
     const data: ExperiencesI[] = await response.json()
 
     setExperiences(data)
