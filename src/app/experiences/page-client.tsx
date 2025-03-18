@@ -13,7 +13,7 @@ import { API } from '@/api/client'
 import { DeleteButton } from '@/components/DeleteButton'
 import { Modal } from '@/components/Modal'
 
-import { ExperiencesI } from '../interfaces'
+import { ExperiencesI } from './interfaces'
 
 
 const schema = z.object({
