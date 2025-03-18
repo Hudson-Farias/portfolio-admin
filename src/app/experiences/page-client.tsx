@@ -13,7 +13,7 @@ import { API } from '@/api/client'
 import { DeleteButton } from '@/components/DeleteButton'
 import { Modal } from '@/components/Modal'
 
-import { ExperiencesI } from './interfaces'
+import { ExperiencesI } from '../interfaces'
 
 
 const schema = z.object({
@@ -60,18 +60,16 @@ export default function ExperiencesClient({ experiences }: { experiences: Experi
 
   return (
     <>
-      <div className='my-10 w-3/5'>
+      <div className='my-10 md:w-3/5'>
         <table className='table table-lg bg-base-300'>
           <thead>
-            <tr>
               <th>Empresa</th>
-              <th>Periodo</th>
-              <th>Cargo</th>
+              <th className='hidden md:table-cell'>Periodo</th>
+              <th className='hidden md:table-cell'>Cargo</th>
 
               <th className='flex justify-end'>
                 {API.hasToken() && <button className='btn btn-ghost' onClick={() => openModal()}><FaPlus /></button>}
               </th>
-            </tr>
           </thead>
           <tbody>
             {experiencesData.map((experience, i) => (
@@ -79,10 +77,10 @@ export default function ExperiencesClient({ experiences }: { experiences: Experi
                 <td>
                   <span className='text-xs font-semibold opacity-60'>{experience.company}</span>
                 </td>
-                <td>
+                <td className='hidden md:table-cell'>
                   <span className='text-xs font-semibold opacity-60'>{experience.period}</span>
                 </td>
-                <td>
+                <td className='hidden md:table-cell'>
                   <span className='text-xs font-semibold opacity-60'>{experience.role}</span>
                 </td>
                 <td className='flex justify-end'>
