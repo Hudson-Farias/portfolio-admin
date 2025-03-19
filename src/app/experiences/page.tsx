@@ -5,7 +5,7 @@ import ExperiencesClient from './page-client'
 
 export default async function Experiences() {
   const response = await API.get('/experiences')
-  const experiences: ExperiencesI[] = response.status !== 204 ? await response.json() : []
+  const experiences: ExperiencesI[] = await response.json()
 
   return <ExperiencesClient experiences={experiences} />
 }

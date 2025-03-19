@@ -1,3 +1,3 @@
 export default async function About() {
-  return <></>
+  return <div className="flex justify-center items-center w-full">Em desenvolvimento</div>
 }

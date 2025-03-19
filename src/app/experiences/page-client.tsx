@@ -73,7 +73,7 @@ export default function ExperiencesClient({ experiences }: { experiences: Experi
           </thead>
           <tbody>
             {experiencesData.map((experience, i) => (
-              <tr className='hover:bg-base-200' key={`project-${i}`}>
+              <tr className='hover:bg-base-200' key={`experience-${i}`}>
                 <td>
                   <span className='text-xs font-semibold opacity-60'>{experience.company}</span>
                 </td>

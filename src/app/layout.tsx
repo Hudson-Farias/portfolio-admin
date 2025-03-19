@@ -44,6 +44,11 @@ const navMenuItems: NavMenuItemI[] = [
     redirectUrl: '/admin/projects',
     subItems: []
   },
+  {
+    label: 'Social',
+    redirectUrl: '/admin/social-networks',
+    subItems: []
+  },
 ]
 
 
