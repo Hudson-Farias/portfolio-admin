@@ -10,6 +10,7 @@ import { API } from '@/api/client'
 
 import { CreateButton } from '@/components/Buttons/Create'
 import { DeleteButton } from '@/components/Buttons/Delete'
+import { Table, Thead, Th, Tbody, Tr, Td } from '@/components/Table'
 import { Modal } from '@/components/Modal'
 import { Form } from '@/components/Form'
 
@@ -46,42 +47,37 @@ export default function ProjectsClient({ projects }: { projects: ProjectsI }) {
   const handlerDeleteButton = async (id: number) => {
     const response = await API.delete(`/projects/${id}`)
     const data: ProjectsI = await response.json()
-
     setProjects(data)
   }
 
   return (
     <>
       <div className='my-10 w-3/5'>
-        <table className='table table-lg bg-base-300'>
-          <thead>
-            <tr>
-              <th>Projeto</th>
-              <th className='flex justify-end'>
-                {API.hasToken() && <CreateButton onClick={() => openModal()} />}
-              </th>
-            </tr>
-          </thead>
-          <tbody>
+        <Table>
+          <Thead>
+            <Th>Projeto</Th>
+            <Th className='flex justify-end'>
+              {API.hasToken() && <CreateButton onClick={() => openModal()} />}
+            </Th>
+          </Thead>
+          <Tbody>
             {projectsData.visible.map((project, i) => (
-              <tr className='hover:bg-base-200' key={`project-${i}`}>
-                <td>
-                  <a href={project.html_url} target='_blank' className='link-hover hover:cursor-pointer'>
-                    <span className='text-xs uppercase font-semibold opacity-60'>{project.name.replaceAll('-', ' ')}</span>
-                  </a>
-                </td>
-                <td className='flex justify-end gap-5'>
+              <Tr key={`project-${i}`}>
+                <Td>
+                  <a href={project.html_url} target='_blank' className='link-hover hover:cursor-pointer'>{project.name.replaceAll('-', ' ')}</a>
+                </Td>
+                <Td className='flex justify-end gap-5'>
                   {!!project.homepage &&
                     <a href={project.homepage} target='_blank' className='link-hover hover:cursor-pointer'>
                       <FiArrowUpRight className='w-6 h-6' />
                     </a>
                   }
                   {API.hasToken() && <DeleteButton onClick={() => handlerDeleteButton(project.git_id)} />}
-                </td>
-              </tr>
+                </Td>
+              </Tr>
             ))}
-          </tbody>
-        </table>
+          </Tbody>
+        </Table>
       </div>
 
       <Modal modalRef={modalRef}>

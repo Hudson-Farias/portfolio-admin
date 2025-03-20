@@ -11,6 +11,7 @@ import { API } from '@/api/client'
 import { CreateButton } from '@/components/Buttons/Create'
 import { DeleteButton } from '@/components/Buttons/Delete'
 import { UpdateButton } from '@/components/Buttons/Update'
+import { Table, Thead, Th, Tbody, Tr, Td } from '@/components/Table'
 import { Modal } from '@/components/Modal'
 import { Form } from '@/components/Form'
 
@@ -62,30 +63,23 @@ export default function ExperiencesClient({ experiences }: { experiences: Experi
   return (
     <>
       <div className='my-10 md:w-3/5'>
-        <table className='table table-lg bg-base-300'>
-          <thead>
-            <th>Empresa</th>
-            <th className='hidden md:table-cell'>Periodo</th>
-            <th className='hidden md:table-cell'>Cargo</th>
+        <Table>
+          <Thead>
+            <Th>Empresa</Th>
+            <Th hiddenMobile={true}>Periodo</Th>
+            <Th hiddenMobile={true}>Cargo</Th>
 
-            <th className='flex justify-end'>
+            <Th className='flex justify-end'>
               {API.hasToken() && <CreateButton onClick={() => openModal()} />}
-
-            </th>
-          </thead>
-          <tbody>
+            </Th>
+          </Thead>
+          <Tbody>
             {experiencesData.map((experience, i) => (
-              <tr className='hover:bg-base-200' key={`experience-${i}`}>
-                <td>
-                  <span className='text-xs font-semibold opacity-60'>{experience.company}</span>
-                </td>
-                <td className='hidden md:table-cell'>
-                  <span className='text-xs font-semibold opacity-60'>{experience.period}</span>
-                </td>
-                <td className='hidden md:table-cell'>
-                  <span className='text-xs font-semibold opacity-60'>{experience.role}</span>
-                </td>
-                <td className='flex justify-end'>
+              <Tr key={`experience-${i}`}>
+                <Td>{experience.company}</Td>
+                <Td hiddenMobile={true}>{experience.period}</Td>
+                <Td hiddenMobile={true}>{experience.role}</Td>
+                <Td className='flex justify-end'>
                   {
                     API.hasToken() &&
                     <>
@@ -93,11 +87,11 @@ export default function ExperiencesClient({ experiences }: { experiences: Experi
                       <DeleteButton onClick={() => handlerDeleteButton(experience.id)} />
                     </>
                   }
-                </td>
-              </tr>
+                </Td>
+              </Tr>
             ))}
-          </tbody>
-        </table>
+          </Tbody>
+        </Table>
       </div>
 
       <Modal modalRef={modalRef}>

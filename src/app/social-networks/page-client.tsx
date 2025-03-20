@@ -11,6 +11,7 @@ import { API } from '@/api/client'
 import { CreateButton } from '@/components/Buttons/Create'
 import { UpdateButton } from '@/components/Buttons/Update'
 import { DeleteButton } from '@/components/Buttons/Delete'
+import { Table, Thead, Th, Tbody, Tr, Td } from '@/components/Table'
 import { Modal } from '@/components/Modal'
 import { Form } from '@/components/Form'
 
@@ -65,21 +66,21 @@ export default function SocialNetworksClient({ socialNetworks }: { socialNetwork
   return (
     <>
       <div className='my-10 md:w-3/5'>
-        <table className='table table-lg bg-base-300'>
-          <thead>
-            <th>Rede Social</th>
+        <Table>
+          <Thead>
+            <Th>Rede Social</Th>
 
-            <th className='flex justify-end'>
+            <Th className='flex justify-end'>
               {API.hasToken() && <CreateButton onClick={() => openModal()} />}
-            </th>
-          </thead>
-          <tbody>
+            </Th>
+          </Thead>
+          <Tbody>
             {socialNetworksData.map((socialNetwork, i) => (
-              <tr className='hover:bg-base-200' key={`social-network-${i}`}>
-                <td>
-                  <a href={socialNetwork.url} className='text-xs font-semibold opacity-60'>{socialNetwork.icon.toUpperCase()}</a>
-                </td>
-                <td className='flex justify-end'>
+              <Tr key={`social-network-${i}`}>
+                <Td>
+                  <a href={socialNetwork.url} className='link-hover hover:cursor-pointer'>{socialNetwork.icon.toUpperCase()}</a>
+                </Td>
+                <Td className='flex justify-end'>
                   {
                     API.hasToken() &&
                     <>
@@ -87,11 +88,11 @@ export default function SocialNetworksClient({ socialNetworks }: { socialNetwork
                       <DeleteButton onClick={() => handlerDeleteButton(socialNetwork.id)} />
                     </>
                   }
-                </td>
-              </tr>
+                </Td>
+              </Tr>
             ))}
-          </tbody>
-        </table>
+          </Tbody>
+        </Table>
       </div>
 
       <Modal modalRef={modalRef}>

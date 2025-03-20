@@ -2,7 +2,7 @@
 
 import { forwardRef } from "react";
 
-export const Modal = forwardRef(({ modalRef, children, }: { modalRef: any, children: React.ReactNode }) => {
+export const Modal = forwardRef(({ modalRef, children }: { modalRef: any, children: React.ReactNode }) => {
     return (
         <dialog className='modal' ref={modalRef}>
             <div className='modal-box bg-base-300'>

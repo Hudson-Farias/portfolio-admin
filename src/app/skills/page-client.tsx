@@ -11,6 +11,7 @@ import { API } from '@/api/client'
 import { CreateButton } from '@/components/Buttons/Create'
 import { UpdateButton } from '@/components/Buttons/Update'
 import { DeleteButton } from '@/components/Buttons/Delete'
+import { Table, Thead, Th, Tbody, Tr, Td } from '@/components/Table'
 import { Modal } from '@/components/Modal'
 import { Form } from '@/components/Form'
 
@@ -63,25 +64,21 @@ export default function SkillsClient({ skills }: { skills: SkillsResponseI }) {
   return (
     <>
       <div className='my-10 md:w-3/5'>
-        <table className='table table-lg bg-base-300'>
-          <thead>
-            <th>Título</th>
-            <th>Categoria</th>
+        <Table>
+          <Thead>
+            <Th>Título</Th>
+            <Th>Categoria</Th>
 
-            <th className='flex justify-end'>
+            <Th className='flex justify-end'>
               {API.hasToken() && <CreateButton onClick={() => openModal()} />}
-            </th>
-          </thead>
-          <tbody>
+            </Th>
+          </Thead>
+          <Tbody>
             {skillsData.skills.map((skill, i) => (
-              <tr className='hover:bg-base-200' key={`skill-${i}`}>
-                <td>
-                  <span className='text-xs font-semibold opacity-60'>{skill.name}</span>
-                </td>
-                <td>
-                  <span className='text-xs font-semibold opacity-60'>{skill.skill_category_name}</span>
-                </td>
-                <td className='flex justify-end'>
+              <Tr key={`skill-${i}`}>
+                <Td>{skill.name}</Td>
+                <Td>{skill.skill_category_name}</Td>
+                <Td className='flex justify-end'>
                   {
                     API.hasToken() &&
                     <>
@@ -89,11 +86,11 @@ export default function SkillsClient({ skills }: { skills: SkillsResponseI }) {
                       <DeleteButton onClick={() => handlerDeleteButton(skill.id)} />
                     </>
                   }
-                </td>
-              </tr>
+                </Td>
+              </Tr>
             ))}
-          </tbody>
-        </table>
+          </Tbody>
+        </Table>
       </div>
 
       <Modal modalRef={modalRef}>
