@@ -12,6 +12,7 @@ import { CreateButton } from '@/components/Buttons/Create'
 import { UpdateButton } from '@/components/Buttons/Update'
 import { DeleteButton } from '@/components/Buttons/Delete'
 import { Modal } from '@/components/Modal'
+import { Form } from '@/components/Form'
 
 import { SkillsResponseI, SkillI } from './interfaces'
 
@@ -96,7 +97,7 @@ export default function SkillsClient({ skills }: { skills: SkillsResponseI }) {
       </div>
 
       <Modal modalRef={modalRef}>
-        <form className='flex flex-col gap-5' onSubmit={handleSubmit(onFormSubmit)}>
+        <Form onSubmit={handleSubmit(onFormSubmit)}>
           <input {...register('name')} placeholder='Título' className='input' />
           {errors.name && <p>{errors.name.message}</p>}
 
@@ -121,11 +122,7 @@ export default function SkillsClient({ skills }: { skills: SkillsResponseI }) {
               </option>
             ))}
           </select>
-
-          <div className='modal-action'>
-            <button className='btn btn-ghost' type='submit'>Enviar</button>
-          </div>
-        </form>
+        </Form>
       </Modal>
     </>
   )

@@ -11,6 +11,7 @@ import { API } from '@/api/client'
 import { CreateButton } from '@/components/Buttons/Create'
 import { DeleteButton } from '@/components/Buttons/Delete'
 import { Modal } from '@/components/Modal'
+import { Form } from '@/components/Form'
 
 import { FiArrowUpRight } from 'react-icons/fi'
 
@@ -84,7 +85,7 @@ export default function ProjectsClient({ projects }: { projects: ProjectsI }) {
       </div>
 
       <Modal modalRef={modalRef}>
-        <form className='flex flex-col gap-5' onSubmit={handleSubmit(onFormSubmit)}>
+        <Form onSubmit={handleSubmit(onFormSubmit)}>
           <label>Selecione um projeto:</label>
           <select {...register("git_id")} className="select">
             <option disabled defaultChecked>Selecione</option>
@@ -96,13 +97,8 @@ export default function ProjectsClient({ projects }: { projects: ProjectsI }) {
             ))}
           </select>
 
-          {errors.git_id && <p>{errors.git_id.message}</p>} {/* Exibindo erro de validação */}
-
-
-          <div className='modal-action'>
-            <button className='btn btn-ghost' type='submit'>Enviar</button>
-          </div>
-        </form>
+          {errors.git_id && <p>{errors.git_id.message}</p>}
+        </Form>
       </Modal>
     </>
   )

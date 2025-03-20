@@ -12,6 +12,7 @@ import { CreateButton } from '@/components/Buttons/Create'
 import { DeleteButton } from '@/components/Buttons/Delete'
 import { UpdateButton } from '@/components/Buttons/Update'
 import { Modal } from '@/components/Modal'
+import { Form } from '@/components/Form'
 
 import { ExperiencesI } from './interfaces'
 
@@ -100,7 +101,7 @@ export default function ExperiencesClient({ experiences }: { experiences: Experi
       </div>
 
       <Modal modalRef={modalRef}>
-        <form className='flex flex-col gap-5' onSubmit={handleSubmit(onFormSubmit)}>
+        <Form onSubmit={handleSubmit(onFormSubmit)}>
           <input {...register('company')} placeholder='Nome da Empresa' className='input' />
           {errors.company && <p>{errors.company.message}</p>}
 
@@ -112,11 +113,7 @@ export default function ExperiencesClient({ experiences }: { experiences: Experi
 
           <textarea {...register('description')} placeholder='Descrição' className='textarea' />
           {errors.role && <p>{errors.role.message}</p>}
-
-          <div className='modal-action'>
-            <button className='btn btn-ghost' type='submit'>Enviar</button>
-          </div>
-        </form>
+        </Form>
       </Modal>
     </>
   )

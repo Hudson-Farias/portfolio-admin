@@ -12,6 +12,7 @@ import { CreateButton } from '@/components/Buttons/Create'
 import { UpdateButton } from '@/components/Buttons/Update'
 import { DeleteButton } from '@/components/Buttons/Delete'
 import { Modal } from '@/components/Modal'
+import { Form } from '@/components/Form'
 
 import { SocialNetworkI } from './interfaces'
 
@@ -94,7 +95,7 @@ export default function SocialNetworksClient({ socialNetworks }: { socialNetwork
       </div>
 
       <Modal modalRef={modalRef}>
-        <form className='flex flex-col gap-5' onSubmit={handleSubmit(onFormSubmit)}>
+        <Form onSubmit={handleSubmit(onFormSubmit)}>
           <label>Selecione uma rede social:</label>
           <select {...register("icon")} className="select">
             <option disabled defaultChecked>Selecione</option>
@@ -120,11 +121,7 @@ export default function SocialNetworksClient({ socialNetworks }: { socialNetwork
               mostrar no footer
             </label>
           </div>
-
-          <div className='modal-action'>
-            <button className='btn btn-ghost' type='submit'>Enviar</button>
-          </div>
-        </form>
+        </Form>
       </Modal>
     </>
   )
