@@ -6,13 +6,11 @@ import { z } from 'zod'
 import { useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 
-import { FaPencil } from 'react-icons/fa6'
-import { FaPlus } from 'react-icons/fa'
-
 import { API } from '@/api/client'
 
-import { UpdateButton } from '@/components/UpdateButton'
-import { DeleteButton } from '@/components/DeleteButton'
+import { CreateButton } from '@/components/Buttons/Create'
+import { UpdateButton } from '@/components/Buttons/Update'
+import { DeleteButton } from '@/components/Buttons/Delete'
 import { Modal } from '@/components/Modal'
 
 import { SkillsResponseI, SkillI } from './interfaces'
@@ -70,7 +68,7 @@ export default function SkillsClient({ skills }: { skills: SkillsResponseI }) {
             <th>Categoria</th>
 
             <th className='flex justify-end'>
-              {API.hasToken() && <button className='btn btn-ghost' onClick={() => openModal()}><FaPlus /></button>}
+              {API.hasToken() && <CreateButton onClick={() => openModal()} />}
             </th>
           </thead>
           <tbody>

@@ -6,15 +6,16 @@ import { z } from 'zod'
 import { useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 
-import { FiArrowUpRight } from 'react-icons/fi'
-import { FaPlus } from 'react-icons/fa'
+import { API } from '@/api/client'
 
-import { DeleteButton } from '@/components/DeleteButton'
+import { CreateButton } from '@/components/Buttons/Create'
+import { DeleteButton } from '@/components/Buttons/Delete'
 import { Modal } from '@/components/Modal'
+
+import { FiArrowUpRight } from 'react-icons/fi'
 
 import { ProjectsI, ProjectI } from './interfaces'
 
-import { API } from '@/api/client'
 
 const schema = z.object({
   git_id: z.string().nullable()
@@ -56,7 +57,7 @@ export default function ProjectsClient({ projects }: { projects: ProjectsI }) {
             <tr>
               <th>Projeto</th>
               <th className='flex justify-end'>
-                {API.hasToken() && <button className='btn btn-ghost' onClick={() => openModal()}><FaPlus /></button>}
+                {API.hasToken() && <CreateButton onClick={() => openModal()} />}
               </th>
             </tr>
           </thead>

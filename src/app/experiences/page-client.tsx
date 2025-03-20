@@ -6,13 +6,12 @@ import { z } from 'zod'
 import { useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 
-import { FaPlus } from 'react-icons/fa'
-
 import { API } from '@/api/client'
 
-import { DeleteButton } from '@/components/DeleteButton'
+import { CreateButton } from '@/components/Buttons/Create'
+import { DeleteButton } from '@/components/Buttons/Delete'
+import { UpdateButton } from '@/components/Buttons/Update'
 import { Modal } from '@/components/Modal'
-import { UpdateButton } from '@/components/UpdateButton'
 
 import { ExperiencesI } from './interfaces'
 
@@ -69,7 +68,8 @@ export default function ExperiencesClient({ experiences }: { experiences: Experi
             <th className='hidden md:table-cell'>Cargo</th>
 
             <th className='flex justify-end'>
-              {API.hasToken() && <button className='btn btn-ghost' onClick={() => openModal()}><FaPlus /></button>}
+              {API.hasToken() && <CreateButton onClick={() => openModal()} />}
+
             </th>
           </thead>
           <tbody>
