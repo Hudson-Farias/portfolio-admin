@@ -6,12 +6,13 @@ import { z } from 'zod'
 import { useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 
-import { FaPencil } from 'react-icons/fa6'
 import { FaPlus } from 'react-icons/fa'
 
 import { API } from '@/api/client'
+
 import { DeleteButton } from '@/components/DeleteButton'
 import { Modal } from '@/components/Modal'
+import { UpdateButton } from '@/components/UpdateButton'
 
 import { ExperiencesI } from './interfaces'
 
@@ -63,13 +64,13 @@ export default function ExperiencesClient({ experiences }: { experiences: Experi
       <div className='my-10 md:w-3/5'>
         <table className='table table-lg bg-base-300'>
           <thead>
-              <th>Empresa</th>
-              <th className='hidden md:table-cell'>Periodo</th>
-              <th className='hidden md:table-cell'>Cargo</th>
+            <th>Empresa</th>
+            <th className='hidden md:table-cell'>Periodo</th>
+            <th className='hidden md:table-cell'>Cargo</th>
 
-              <th className='flex justify-end'>
-                {API.hasToken() && <button className='btn btn-ghost' onClick={() => openModal()}><FaPlus /></button>}
-              </th>
+            <th className='flex justify-end'>
+              {API.hasToken() && <button className='btn btn-ghost' onClick={() => openModal()}><FaPlus /></button>}
+            </th>
           </thead>
           <tbody>
             {experiencesData.map((experience, i) => (
@@ -87,7 +88,7 @@ export default function ExperiencesClient({ experiences }: { experiences: Experi
                   {
                     API.hasToken() &&
                     <>
-                      <button className='btn btn-ghost' onClick={() => openModal(experience)}><FaPencil /></button>
+                      <UpdateButton onClick={() => openModal(experience)} />
                       <DeleteButton onClick={() => handlerDeleteButton(experience.id)} />
                     </>
                   }

@@ -10,6 +10,8 @@ import { FaPencil } from 'react-icons/fa6'
 import { FaPlus } from 'react-icons/fa'
 
 import { API } from '@/api/client'
+
+import { UpdateButton } from '@/components/UpdateButton'
 import { DeleteButton } from '@/components/DeleteButton'
 import { Modal } from '@/components/Modal'
 
@@ -84,7 +86,7 @@ export default function SkillsClient({ skills }: { skills: SkillsResponseI }) {
                   {
                     API.hasToken() &&
                     <>
-                      <button className='btn btn-ghost' onClick={() => openModal(skill)}><FaPencil /></button>
+                      <UpdateButton onClick={() => openModal(skill)} />
                       <DeleteButton onClick={() => handlerDeleteButton(skill.id)} />
                     </>
                   }

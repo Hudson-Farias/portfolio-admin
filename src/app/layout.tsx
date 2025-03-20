@@ -5,7 +5,6 @@ import './globals.css'
 import { FiMenu } from "react-icons/fi";
 
 import { API } from '@/api'
-import { strict } from 'node:assert';
 
 const geistSans = Geist({
   variable: '--font-geist-sans',

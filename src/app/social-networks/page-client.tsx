@@ -6,10 +6,11 @@ import { z } from 'zod'
 import { useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 
-import { FaPencil } from 'react-icons/fa6'
 import { FaPlus } from 'react-icons/fa'
 
 import { API } from '@/api/client'
+
+import { UpdateButton } from '@/components/UpdateButton'
 import { DeleteButton } from '@/components/DeleteButton'
 import { Modal } from '@/components/Modal'
 
@@ -82,7 +83,7 @@ export default function SocialNetworksClient({ socialNetworks }: { socialNetwork
                   {
                     API.hasToken() &&
                     <>
-                      <button className='btn btn-ghost' onClick={() => openModal(socialNetwork)}><FaPencil /></button>
+                      <UpdateButton onClick={() => openModal(socialNetwork)} />
                       <DeleteButton onClick={() => handlerDeleteButton(socialNetwork.id)} />
                     </>
                   }
