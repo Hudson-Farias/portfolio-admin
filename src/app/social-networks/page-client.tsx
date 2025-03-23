@@ -27,7 +27,7 @@ const schema = z.object({
 })
 
 
-const socialNetworkOptions: string[] = ['linkedin', 'github', 'gitlab', 'twitter', 'instagram']
+const socialNetworkOptions: string[] = ['linkedin', 'github', 'gitlab', 'twitter', 'instagram', 'whatsapp', 'email']
 
 export default function SocialNetworksClient({ socialNetworks }: { socialNetworks: SocialNetworkI[] }) {
   const { register, handleSubmit, setValue, formState: { errors } } = useForm({ resolver: zodResolver(schema) })
